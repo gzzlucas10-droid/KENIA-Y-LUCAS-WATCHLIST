@@ -1,0 +1,5 @@
+Pon tus 3 fotos AQUÍ, en esta misma carpeta (junto al index.html),
+con estos nombres exactos:
+- lucas.jpg
+- kenia.jpg
+- juntos.jpg
