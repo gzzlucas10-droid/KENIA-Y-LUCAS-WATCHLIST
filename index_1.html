@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marvel Watchlist — Antes de Avengers Doomsday</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070C0A;
+    --panel:#0F1B15;
+    --panel-2:#152420;
+    --line:#2B4438;
+    --gold:#E8C468;
+    --pink:#D9A28C;
+    --red:#E63946;
+    --doom-green:#0F3D2E;
+    --doom-gold:#C9A24A;
+    --doom-gold-soft:rgba(201,162,74,.4);
+    --text:#EDEAE0;
+    --muted:#82988A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(255,255,255,.012) 0px, rgba(255,255,255,.012) 1px, transparent 1px, transparent 3px),
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(201,162,74,.10) 0%, transparent 55%),
+      radial-gradient(ellipse 800px 600px at 100% 100%, rgba(15,61,46,.55) 0%, transparent 60%),
+      radial-gradient(ellipse at top, #10201A 0%, var(--bg) 60%);
+    background-color: var(--bg);
+    color:var(--text);
+    font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    padding: 0 16px 90px;
+  }
+  .crown-bar{height:5px;width:100%;background:linear-gradient(90deg, transparent, var(--doom-gold) 20%, #EAD9A0 50%, var(--doom-gold) 80%, transparent);margin-bottom:34px;opacity:.85;}
+  .wrap{max-width:720px;margin:0 auto;}
+  .header-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:20px;}
+  .header-text{flex:1;min-width:0;}
+  .hero{width:130px;height:130px;flex-shrink:0;border-radius:6px;overflow:hidden;border:2px solid var(--doom-gold);box-shadow:0 16px 32px -16px rgba(0,0,0,.7), 0 0 0 5px rgba(201,162,74,.08), 0 0 28px -6px rgba(201,162,74,.4);}
+  .hero img{width:100%;height:100%;object-fit:cover;display:block;}
+  h1{font-family:'Cinzel', Georgia, serif;font-weight:800;font-size:36px;letter-spacing:.03em;text-transform:uppercase;margin:0 0 8px;line-height:1.1;background:linear-gradient(90deg, var(--gold), var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block;}
+  .sub{color:#A8BDB0;font-size:14px;}
+  .sub strong{color:var(--doom-gold)!important;font-weight:700;}
+  .ornament{display:flex;align-items:center;justify-content:center;gap:10px;margin:22px 0 26px;color:var(--doom-gold);opacity:.7;}
+  .ornament::before,.ornament::after{content:"";flex:1;height:1px;background:linear-gradient(90deg, transparent, var(--doom-gold), transparent);}
+  .ornament .dash{width:18px;height:2px;background:var(--doom-gold);opacity:.6;flex-shrink:0;}
+  .ornament .diamond{font-size:11px;transform:rotate(45deg);border:1px solid var(--doom-gold);width:8px;height:8px;flex-shrink:0;background:rgba(201,162,74,.15);}
+  @media (max-width:520px){
+    .header-row{flex-direction:column;align-items:flex-start;}
+    .hero{width:100%;height:160px;}
+  }
+  .board{background:linear-gradient(160deg, var(--panel), #0C1712);border:1px solid var(--line);border-top:2px solid var(--doom-gold);border-radius:8px;padding:20px 22px;margin-bottom:22px;box-shadow:0 20px 40px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(201,162,74,.08);position:relative;}
+  .board::before,.board::after{content:"";position:absolute;top:-1px;width:9px;height:9px;border-top:2px solid var(--doom-gold);}
+  .board::before{left:-1px;border-left:2px solid var(--doom-gold);}
+  .board::after{right:-1px;border-right:2px solid var(--doom-gold);}
+  .board-row{display:flex;align-items:center;gap:14px;padding:11px 0;}
+  .board-row + .board-row{border-top:1px solid var(--line);}
+  .avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#241505;overflow:hidden;background:var(--gold);box-shadow:0 0 0 2px var(--panel), 0 0 0 3px rgba(201,162,74,.35);}
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+  .avatar.k{background:var(--pink);color:#241505;}
+  .who{width:56px;font-weight:700;font-size:13px;letter-spacing:.04em;flex-shrink:0;}
+  .who.l{color:var(--gold);}
+  .who.k{color:var(--pink);}
+  .bar-track{flex:1;height:8px;background:#08120D;border:1px solid var(--line);border-radius:6px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:6px;transition:width .3s ease;}
+  .bar-fill.l{background:var(--gold);}
+  .bar-fill.k{background:var(--pink);}
+  .count{width:52px;text-align:right;font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted);flex-shrink:0;}
+  .col-labels{display:flex;justify-content:flex-end;gap:10px;padding:0 14px 8px;}
+  .col-labels .avatar{width:28px;height:28px;font-size:11px;}
+  .col-labels div{width:26px;display:flex;justify-content:center;}
+  .row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:6px;background:rgba(21,36,29,.4);border-left:2px solid rgba(201,162,74,.18);border-bottom:1px solid rgba(43,68,56,.7);margin-bottom:2px;}
+  .row:hover{background:var(--panel-2);border-left-color:var(--doom-gold);}
+  .num{width:26px;flex-shrink:0;text-align:right;font-variant-numeric:tabular-nums;font-size:12px;color:var(--doom-gold);opacity:.8;font-family:'Cinzel', Georgia, serif;}
+  .info{flex:1;min-width:0;}
+  .title{font-size:14.5px;line-height:1.3;}
+  .row.done .title{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line);}
+  .meta{display:flex;gap:6px;align-items:center;margin-top:2px;}
+  .year{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;}
+  .badge{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;padding:1px 6px;border-radius:4px;border:1px solid var(--line);color:var(--muted);}
+  .badge.series{border-color:#2E4A5A;color:#7CC7E8;}
+  .badge.scene{border-color:#4A3A2E;color:var(--doom-gold);}
+  .badge.special{border-color:#4A2E3A;color:var(--pink);}
+  .chk{width:27px;height:27px;flex-shrink:0;border-radius:6px;border:1.5px solid #4A6656;background:#08120D;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:transparent;transition:all .15s ease;-webkit-tap-highlight-color:transparent;}
+  .chk.l.on{background:var(--gold);border-color:var(--gold);color:#241505;}
+  .chk.k.on{background:var(--pink);border-color:var(--pink);color:#241505;}
+  .finale{margin-top:8px;padding:24px 20px;border-radius:8px;border:1.5px solid var(--doom-gold);background:linear-gradient(135deg, rgba(15,61,46,.65), rgba(201,162,74,.1));box-shadow:0 0 34px -6px rgba(201,162,74,.3), inset 0 1px 0 rgba(234,217,160,.15);position:relative;}
+  .finale::before,.finale::after{content:"";position:absolute;top:-1.5px;width:10px;height:10px;border-top:2px solid #EAD9A0;}
+  .finale::before{left:-1.5px;border-left:2px solid #EAD9A0;}
+  .finale::after{right:-1.5px;border-right:2px solid #EAD9A0;}
+  .finale .num{color:var(--doom-gold);}
+  .finale .title{font-family:'Cinzel', Georgia, serif;font-weight:700;font-size:18px;letter-spacing:.08em;background:linear-gradient(90deg, var(--doom-gold), #EAD9A0);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .footer-note{text-align:center;color:var(--muted);font-size:12px;margin-top:28px;}
+  .sync-note{text-align:center;color:var(--muted);font-size:11px;margin-top:6px;opacity:.7;}
+</style>
+</head>
+<body>
+<div class="crown-bar"></div>
+<div class="wrap">
+  <div class="header-row">
+    <div class="header-text">
+      <h1>Marvel Watchlist</h1>
+      <div class="sub">Su lista para ponerse al día antes de <strong style="color:var(--text)">Avengers: Doomsday</strong></div>
+    </div>
+  </div>
+
+  <div class="ornament"><span class="dash"></span><span class="diamond"></span><span class="dash"></span></div>
+
+  <div class="board">
+    <div class="board-row">
+      <div class="avatar l" id="avatarL">
+        <img src="lucas.jpg" alt="Lucas" onerror="this.parentElement.innerHTML='L'">
+      </div>
+      <div class="who l">Lucas</div>
+      <div class="bar-track"><div class="bar-fill l" id="barL" style="width:0%"></div></div>
+      <div class="count" id="countL">0/57</div>
+    </div>
+    <div class="board-row">
+      <div class="avatar k" id="avatarK">
+        <img src="kenia.jpg" alt="Kenia" onerror="this.parentElement.innerHTML='K'">
+      </div>
+      <div class="who k">Kenia</div>
+      <div class="bar-track"><div class="bar-fill k" id="barK" style="width:0%"></div></div>
+      <div class="count" id="countK">0/57</div>
+    </div>
+  </div>
+
+  <div class="col-labels">
+    <div class="avatar l" style="font-size:11px;"><img src="lucas.jpg" alt="L" onerror="this.parentElement.innerHTML='L'"></div>
+    <div class="avatar k" style="font-size:11px;"><img src="kenia.jpg" alt="K" onerror="this.parentElement.innerHTML='K'"></div>
+  </div>
+
+  <div id="list"></div>
+
+  <div class="footer-note">Toca tu avatar para marcar la que ya viste.</div>
+  <div class="sync-note">Se sincroniza solo entre los dos celulares.</div>
+</div>
+
+<script>
+const ITEMS = [
+  {id:"cap-first-avenger", t:"Captain America: The First Avenger", y:2011},
+  {id:"captain-marvel-1", t:"Captain Marvel", y:2019},
+  {id:"iron-man", t:"Iron Man", y:2008},
+  {id:"incredible-hulk", t:"The Incredible Hulk", y:2008},
+  {id:"iron-man-2", t:"Iron Man 2", y:2010},
+  {id:"thor-1", t:"Thor", y:2011},
+  {id:"avengers-1", t:"The Avengers", y:2012},
+  {id:"scene-thanos", t:"Escena post-créditos — aparece Thanos", y:2012, type:"scene"},
+  {id:"iron-man-3", t:"Iron Man 3", y:2013},
+  {id:"thor-dark-world", t:"Thor: The Dark World", y:2013},
+  {id:"cap-winter-soldier", t:"Captain America: The Winter Soldier", y:2014},
+  {id:"gotg-1", t:"Guardians of the Galaxy", y:2014},
+  {id:"gotg-2", t:"Guardians of the Galaxy Vol. 2", y:2017},
+  {id:"i-am-groot", t:"I Am Groot", y:2022, type:"series"},
+  {id:"avengers-ultron", t:"Avengers: Age of Ultron", y:2015},
+  {id:"ant-man-1", t:"Ant-Man", y:2015},
+  {id:"cap-civil-war", t:"Captain America: Civil War", y:2016},
+  {id:"black-widow", t:"Black Widow", y:2021},
+  {id:"black-panther-1", t:"Black Panther", y:2018},
+  {id:"doctor-strange-1", t:"Doctor Strange", y:2016},
+  {id:"spiderman-homecoming", t:"Spider-Man: Homecoming", y:2017},
+  {id:"ant-man-wasp", t:"Ant-Man and the Wasp", y:2018},
+  {id:"thor-ragnarok", t:"Thor: Ragnarok", y:2017},
+  {id:"avengers-infinity-war", t:"Avengers: Infinity War", y:2018},
+  {id:"scene-antman-wasp", t:"Escena post-créditos (Ant-Man and the Wasp)", y:2018, type:"scene"},
+  {id:"scene-captain-marvel", t:"Escena post-créditos (Captain Marvel)", y:2019, type:"scene"},
+  {id:"avengers-endgame", t:"Avengers: Endgame", y:2019},
+  {id:"wandavision", t:"WandaVision", y:2021, type:"series"},
+  {id:"falcon-winter-soldier", t:"The Falcon and the Winter Soldier", y:2021, type:"series"},
+  {id:"spiderman-far-from-home", t:"Spider-Man: Far From Home", y:2019},
+  {id:"loki-1", t:"Loki", y:2021, type:"series"},
+  {id:"spiderman-no-way-home", t:"Spider-Man: No Way Home", y:2021},
+  {id:"eternals", t:"Eternals", y:2021},
+  {id:"shang-chi", t:"Shang-Chi and the Legend of the Ten Rings", y:2021},
+  {id:"hawkeye", t:"Hawkeye", y:2021, type:"series"},
+  {id:"doctor-strange-multiverse", t:"Doctor Strange in the Multiverse of Madness", y:2022},
+  {id:"moon-knight", t:"Moon Knight", y:2022, type:"series"},
+  {id:"ms-marvel", t:"Ms. Marvel", y:2022, type:"series"},
+  {id:"thor-love-thunder", t:"Thor: Love and Thunder", y:2022},
+  {id:"ironheart", t:"Ironheart", y:2025, type:"series"},
+  {id:"she-hulk", t:"She-Hulk: Attorney at Law", y:2022, type:"series"},
+  {id:"werewolf-by-night", t:"Werewolf by Night", y:2022, type:"special"},
+  {id:"black-panther-wakanda-forever", t:"Black Panther: Wakanda Forever", y:2022},
+  {id:"antman-quantumania", t:"Ant-Man and the Wasp: Quantumania", y:2023},
+  {id:"gotg-3", t:"Guardians of the Galaxy Vol. 3", y:2023},
+  {id:"secret-invasion", t:"Secret Invasion", y:2023, type:"series"},
+  {id:"loki-2", t:"Loki (Temporada 2)", y:2023, type:"series"},
+  {id:"the-marvels", t:"The Marvels", y:2023},
+  {id:"echo", t:"Echo", y:2024, type:"series"},
+  {id:"deadpool-wolverine", t:"Deadpool & Wolverine", y:2024},
+  {id:"agatha-all-along", t:"Agatha All Along", y:2024, type:"series"},
+  {id:"cap-brave-new-world", t:"Captain America: Brave New World", y:2025},
+  {id:"daredevil-born-again", t:"Daredevil: Born Again", y:2025, type:"series"},
+  {id:"thunderbolts", t:"Thunderbolts", y:2025},
+  {id:"fantastic-four-first-steps", t:"The Fantastic Four: First Steps", y:2025},
+  {id:"nueva-spiderman", t:"Nueva de Spider-Man", y:2026},
+  {id:"avengers-doomsday", t:"AVENGERS: DOOMSDAY", type:"finale"},
+];
+
+const NPOINT_URL = "https://api.npoint.io/b0f6cbab3e33fca56e28";
+const DEFAULT_STATE = {};
+["cap-first-avenger","captain-marvel-1","iron-man","incredible-hulk","iron-man-2","thor-1"]
+  .forEach(id => DEFAULT_STATE[id] = {l:true, k:false});
+
+let state = {};
+
+async function loadState(){
+  try {
+    const res = await fetch(NPOINT_URL);
+    const data = await res.json();
+    return (data && Object.keys(data).length) ? data : DEFAULT_STATE;
+  } catch(e) {
+    console.error("no se pudo cargar", e);
+    return DEFAULT_STATE;
+  }
+}
+async function saveState(){
+  try {
+    await fetch(NPOINT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(state)
+    });
+  } catch(e) { console.error("no se pudo guardar", e); }
+}
+
+function badgeLabel(type){
+  if(type==="series") return '<span class="badge series">Serie</span>';
+  if(type==="scene") return '<span class="badge scene">Escena</span>';
+  if(type==="special") return '<span class="badge special">Especial</span>';
+  return "";
+}
+
+function render(){
+  const list = document.getElementById("list");
+  list.innerHTML = "";
+  ITEMS.forEach((item, i) => {
+    const s = state[item.id] || {l:false, k:false};
+    const isFinale = item.type === "finale";
+    const row = document.createElement("div");
+    row.className = "row" + ((s.l && s.k) ? " done" : "") + (isFinale ? " finale" : "");
+
+    row.innerHTML = `
+      <div class="num">${isFinale ? "★" : (i+1)}</div>
+      <div class="info">
+        <div class="title">${item.t}</div>
+        <div class="meta">
+          ${item.y ? `<span class="year">${item.y}</span>` : ""}
+          ${badgeLabel(item.type)}
+        </div>
+      </div>
+      <button class="chk l ${s.l?"on":""}" data-id="${item.id}" data-who="l">${s.l?"✓":""}</button>
+      <button class="chk k ${s.k?"on":""}" data-id="${item.id}" data-who="k">${s.k?"✓":""}</button>
+    `;
+    list.appendChild(row);
+  });
+
+  list.querySelectorAll(".chk").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.id;
+      const who = btn.dataset.who;
+      if(!state[id]) state[id] = {l:false, k:false};
+      state[id][who] = !state[id][who];
+      saveState();
+      render();
+      updateProgress();
+    });
+  });
+}
+
+function updateProgress(){
+  const total = ITEMS.length;
+  let cl = 0, ck = 0;
+  ITEMS.forEach(item => {
+    const s = state[item.id] || {};
+    if(s.l) cl++;
+    if(s.k) ck++;
+  });
+  document.getElementById("barL").style.width = (cl/total*100) + "%";
+  document.getElementById("barK").style.width = (ck/total*100) + "%";
+  document.getElementById("countL").textContent = cl + "/" + total;
+  document.getElementById("countK").textContent = ck + "/" + total;
+}
+
+async function init(){
+  state = await loadState();
+  render();
+  updateProgress();
+}
+init();
+</script>
+</body>
+</html>
